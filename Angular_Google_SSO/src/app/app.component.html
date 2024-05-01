@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="content" [ngClass]="{'centered': !user}">
+    <div *ngIf="!user" class="login-container">
+      <asl-google-signin-button></asl-google-signin-button>
+    </div>
+
+    <div *ngIf="user" class="user-profile">
+      <div (click)="openModal(user.photoUrl)" class="clickable-photo">
+        <img [src]="user.photoUrl" alt="User Photo" class="user-photo">
+      </div>
+      <div class="user-info">
+        <h4 class="welcome-header">Welcome {{ user.name }}!</h4>
+        <p>{{ user.email }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Template -->
+<div class="modal" [ngClass]="{'open': isModalOpen}">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <img [src]="modalImageUrl" alt="User Photo" class="modal-photo">
+  </div>
+</div>
